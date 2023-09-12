@@ -4,13 +4,14 @@ const initialState: EnemyState = {
   maxHealth: 10,
   level: 1,
   maxLevel: 10,
-  damage: 1,
-  defense: 0,
+  damage: 10,
+  defense: 2,
   experience: 10,
   gold: 10,
   drops: ["Slime"],
   description: "A slime",
-  image: "slime",
+  image:
+    "https://e7.pngegg.com/pngimages/511/146/png-clipart-world-of-warcraft-legion-drawing-monster-monster-world-cartoon.png",
   unlocked: true,
   unlockedAtLevel: 1,
 };

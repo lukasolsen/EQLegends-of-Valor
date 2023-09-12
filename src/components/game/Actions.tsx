@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useActionDispatcher } from "../../services/GameService";
+import { useSelector } from "react-redux";
 
 type buttonRefsType = {
   attack?: HTMLButtonElement;
@@ -6,13 +8,8 @@ type buttonRefsType = {
   items?: HTMLButtonElement;
 };
 
-const Actions = ({
-  doAction,
-  moves,
-}: {
-  doAction: (move: IMove) => void;
-  moves: { attack: IMove[]; defend: IMove[]; items: IMove[] };
-}) => {
+const Actions = () => {
+  const moves = useSelector((state: IState) => state.game.moves);
   const [popup, setPopup] = useState(false);
   const [popupCategory, setPopupCategory] = useState("");
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
@@ -29,6 +26,8 @@ const Actions = ({
     });
     setPopup(true);
   };
+
+  const useAction = useActionDispatcher();
 
   return (
     <>
@@ -91,7 +90,7 @@ const Actions = ({
                   <button
                     className="flex justify-between hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md cursor-pointer flex-row w-full"
                     onClick={() => {
-                      doAction(move);
+                      useAction.DoAction({ type: "ATTACK", move });
                       setPopup(false);
                     }}
                   >
@@ -106,7 +105,7 @@ const Actions = ({
                   <button
                     className="flex justify-between hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md cursor-pointer flex-row w-full"
                     onClick={() => {
-                      doAction(move);
+                      useAction.DoAction({ type: "DEFEND", move });
                       setPopup(false);
                     }}
                   >
@@ -121,7 +120,7 @@ const Actions = ({
                   <button
                     className="flex justify-between hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md cursor-pointer flex-row w-full"
                     onClick={() => {
-                      doAction(move);
+                      useAction.DoAction({ type: "HEAL", move });
                       setPopup(false);
                     }}
                   >
