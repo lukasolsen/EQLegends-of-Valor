@@ -40,6 +40,7 @@ type EnemyState = {
 
 type GameState = {
   isPlayerTurn: boolean; // Whether it is the player's turn or not | e.g. true
+  hasEnded: boolean;
   turnNumber: number; // Current turn number | e.g. 1
   logs: LogT[]; // Logs of the game | e.g. [{ message: "You hit the enemy!" }]
   moves: {

@@ -1,5 +1,6 @@
 const initialState: GameState = {
   isPlayerTurn: true, // Assuming player starts first
+  hasEnded: false,
   turnNumber: 1,
   logs: [],
   moves: {
@@ -66,6 +67,12 @@ const gameReducer = (state = initialState, action: any) => {
       return {
         ...state,
         turnNumber: state.turnNumber + 1,
+      };
+
+    case "END_GAME":
+      return {
+        ...state,
+        hasEnded: true,
       };
 
     default:

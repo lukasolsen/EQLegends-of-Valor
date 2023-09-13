@@ -29,6 +29,8 @@ const Actions = () => {
 
   const useAction = useActionDispatcher();
 
+  const hasGameEnded = useSelector((state: IState) => state.game.hasEnded);
+
   return (
     <>
       {/* Bottom Bar */}
@@ -71,7 +73,7 @@ const Actions = () => {
       </div>
 
       {/* Popups */}
-      {popup && (
+      {popup && !hasGameEnded && (
         <div
           className="fixed bg-white dark:bg-gray-800 p-4 rounded shadow-md w-64"
           style={{

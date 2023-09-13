@@ -10,7 +10,7 @@ import {
   updatePlayerDefense,
   updatePlayerItems,
 } from "../data/store/player/playerActions";
-import { addLog } from "../data/store/game/gameActions";
+import { addLog, endGame } from "../data/store/game/gameActions";
 
 type ActionT = {
   type: "ATTACK" | "DEFEND" | "HEAL" | "USE_ITEM";
@@ -83,6 +83,9 @@ const hit = (
   const dmg = generateRandomNumber(1, enemy.damage);
   dispatch(addLog({ message: "The enemy hit you " + dmg + " damage!" }));
   dispatch(damagePlayer(dmg));
+  if (enemy.health - dmg <= 0) {
+    dispatch(endGame());
+  }
 };
 
 const defend = (

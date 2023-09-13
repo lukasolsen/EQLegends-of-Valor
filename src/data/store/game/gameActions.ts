@@ -13,3 +13,6 @@ export const incrementTurnNumber = () => ({
   type: "INCREMENT_TURN_NUMBER",
 });
 
+export const endGame = () => ({
+  type: "END_GAME",
+});
