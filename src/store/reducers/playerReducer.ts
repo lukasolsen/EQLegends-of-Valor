@@ -1,4 +1,21 @@
-const initialState: PlayerState = {
+export interface IPlayerState {
+  name: string; // Name of the player | e.g. "John"
+  description: string; // Description of the player | e.g. "A brave adventurer"
+  image: string; // Image of the player | e.g. "player.png"
+
+  health: number; // Current health of the player | e.g. 10
+  maxHealth: number; // Max health of the player | e.g. 10
+  level: number; // Current level of the player | e.g. 1
+  maxLevel: number; // Max level the player can be | e.g. 5
+  damage: number; // Damage the player does | e.g. 5
+  defense: number; // Defense the player has | e.g. 5
+  experience: number; // Experience the player has | e.g. 10
+  gold: number; // Gold the player has | e.g. 10
+  items: IItem[]; // Items the player has | e.g. ["potion", "sword"]
+}
+
+// TODO: Fix type of items
+const initialState: IPlayerState = {
   health: 100,
   maxHealth: 100,
   level: 1,
@@ -23,7 +40,7 @@ const initialState: PlayerState = {
   image: "player.png",
 };
 
-const playerReducer = (state = initialState, action: any) => {
+const playerReducer = (state = initialState, action: IActionRedux) => {
   switch (action.type) {
     case "DAMAGE_PLAYER":
       return {

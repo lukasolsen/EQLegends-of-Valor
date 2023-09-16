@@ -1,8 +1,24 @@
-const initialState: GameState = {
+export interface IGameState {
+  isPlayerTurn: boolean; // Whether it is the player's turn or not | e.g. true
+  hasEnded: boolean;
+  turnNumber: number; // Current turn number | e.g. 1
+
+  logs: LogT[]; // Logs of the game | e.g. [{ message: "You hit the enemy!" }]
+
+  moves: {
+    attack: IMove[]; // Attack moves the player has | e.g. [{ name: "Fireball" }]
+    defend: IMove[]; // Defend moves the player has | e.g. [{ name: "Shield" }]
+    heal: IMove[]; // Heal moves the player has | e.g. [{ name: "Potion" }]
+  };
+}
+
+const initialState: IGameState = {
   isPlayerTurn: true, // Assuming player starts first
   hasEnded: false,
   turnNumber: 1,
+
   logs: [],
+
   moves: {
     attack: [
       {
@@ -49,7 +65,7 @@ const initialState: GameState = {
   },
 };
 
-const gameReducer = (state = initialState, action: any) => {
+const gameReducer = (state = initialState, action: IActionRedux) => {
   switch (action.type) {
     case "SWITCH_TURN":
       return {

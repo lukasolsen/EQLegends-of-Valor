@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useActionDispatcher } from "../../services/GameService";
+import { useActionDispatcher, ActionTypes } from "../../services";
 import { useSelector } from "react-redux";
 
 type buttonRefsType = {
@@ -27,7 +27,7 @@ const Actions = () => {
     setPopup(true);
   };
 
-  const useAction = useActionDispatcher();
+  const useActionHandler = useActionDispatcher();
 
   const hasGameEnded = useSelector((state: IState) => state.game.hasEnded);
 
@@ -92,12 +92,12 @@ const Actions = () => {
                   <button
                     className="flex justify-between hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md cursor-pointer flex-row w-full"
                     onClick={() => {
-                      useAction.DoAction({ type: "ATTACK", move });
+                      useActionHandler.doAction(ActionTypes.ATTACK, { move });
                       setPopup(false);
                     }}
                   >
                     <span>{move.name}</span>
-                    <span>Defense: {move.damage}</span>
+                    <span>Attack: {move.damage}</span>
                   </button>
                 </li>
               ))}
@@ -107,12 +107,12 @@ const Actions = () => {
                   <button
                     className="flex justify-between hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md cursor-pointer flex-row w-full"
                     onClick={() => {
-                      useAction.DoAction({ type: "DEFEND", move });
+                      useActionHandler.doAction(ActionTypes.DEFEND, { move });
                       setPopup(false);
                     }}
                   >
                     <span>{move.name}</span>
-                    <span>Defense: {move.healAmount}</span>
+                    <span>Defense: {move.defense}</span>
                   </button>
                 </li>
               ))}
@@ -122,12 +122,12 @@ const Actions = () => {
                   <button
                     className="flex justify-between hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md cursor-pointer flex-row w-full"
                     onClick={() => {
-                      useAction.DoAction({ type: "HEAL", move });
+                      useActionHandler.doAction(ActionTypes.USE_ITEM, { move });
                       setPopup(false);
                     }}
                   >
                     <span>{move.name}</span>
-                    <span>Defense: {move.healAmount}</span>
+                    <span>Defense: {move.healingAmount}</span>
                   </button>
                 </li>
               ))}

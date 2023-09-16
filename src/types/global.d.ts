@@ -3,6 +3,12 @@ type LogT = {
   color?: string;
 };
 
+interface IActionRedux {
+  type: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  payload: any;
+}
+
 interface IMove {
   name: string; // Name of the move | e.g. "Fireball"
   description: string; // Description of the move | e.g. "A fiery ball of fire"
@@ -22,7 +28,8 @@ interface IMove {
   criticalHitChance?: number; // Chance the move will crit | e.g. 0.1
 }
 
-type EnemyState = {
+// ! Removed
+/*type EnemyState = {
   name: string; // Name of the enemy | e.g. "Goblin"
   description: string; // Description of the enemy | e.g. "A small green goblin"
   image: string; // Image of the enemy | e.g. "goblin.png"
@@ -36,8 +43,10 @@ type EnemyState = {
   experience: number; // Experience the enemy gives | e.g. 10
   gold: number; // Gold the enemy gives | e.g. 10
   drops: string[]; // Items the enemy can drop | e.g. ["potion", "sword"]
-};
+};*/
 
+// ! Removed
+/*
 type GameState = {
   isPlayerTurn: boolean; // Whether it is the player's turn or not | e.g. true
   hasEnded: boolean;
@@ -48,8 +57,10 @@ type GameState = {
     defend: IMove[]; // Defend moves the player has | e.g. [{ name: "Shield" }]
     heal: IMove[]; // Heal moves the player has | e.g. [{ name: "Potion" }]
   };
-};
+};*/
 
+// ! Removed
+/*
 interface IPlayerState {
   name: string; // Name of the player | e.g. "John"
   description: string; // Description of the player | e.g. "A brave adventurer"
@@ -64,7 +75,7 @@ interface IPlayerState {
   experience: number; // Experience the player has | e.g. 10
   gold: number; // Gold the player has | e.g. 10
   items: IItem[]; // Items the player has | e.g. ["potion", "sword"]
-}
+}*/
 
 interface IItem {
   name: string; // Name of the item | e.g. "Potion"

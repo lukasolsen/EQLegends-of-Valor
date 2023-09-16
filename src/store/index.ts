@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-import { enemyReducer } from "./enemy/enemy";
-import { gameReducer } from "./game/game";
-import { playerReducer } from "./player/player";
+import { enemyReducer } from "./reducers/enemyReducer";
+import { gameReducer } from "./reducers/gameReducer";
+import { playerReducer } from "./reducers/playerReducer";
 
 const rootReducer = combineReducers({
   enemy: enemyReducer,

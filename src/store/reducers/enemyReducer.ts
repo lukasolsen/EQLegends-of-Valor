@@ -1,22 +1,47 @@
-const initialState: EnemyState = {
+export interface IEnemyState {
+  name: string; // Name of the enemy | e.g. "Goblin"
+  description: string; // Description of the enemy | e.g. "A small green goblin"
+  image: string; // Image of the enemy | e.g. "goblin.png"
+
+  health: number; // Current health of the enemy | e.g. 10
+  maxHealth: number; // Max health of the enemy | e.g. 10
+  level: number; // Current level of the enemy | e.g. 1
+  maxLevel: number; // Max level the enemy can be | e.g. 5
+
+  damage: number; // Damage the enemy does | e.g. 5
+  defense: number; // Defense the enemy has | e.g. 5
+
+  experience: number; // Experience the enemy gives | e.g. 10
+  gold: number; // Gold the enemy gives | e.g. 10
+  drops: string[]; // Items the enemy can drop | e.g. ["potion", "sword"]
+
+  unlocked: boolean; // Whether the enemy is unlocked or not | e.g. true
+  unlockedAtLevel: number; // Level the enemy is unlocked at | e.g. 1
+}
+
+const initialState: IEnemyState = {
   name: "Slime",
+  description: "A slime",
+  image:
+    "https://e7.pngegg.com/pngimages/511/146/png-clipart-world-of-warcraft-legion-drawing-monster-monster-world-cartoon.png",
+
   health: 10,
   maxHealth: 10,
   level: 1,
   maxLevel: 10,
+
   damage: 10,
   defense: 2,
+
   experience: 10,
   gold: 10,
   drops: ["Slime"],
-  description: "A slime",
-  image:
-    "https://e7.pngegg.com/pngimages/511/146/png-clipart-world-of-warcraft-legion-drawing-monster-monster-world-cartoon.png",
+
   unlocked: true,
   unlockedAtLevel: 1,
 };
 
-const enemyReducer = (state = initialState, action: any) => {
+const enemyReducer = (state = initialState, action: IActionRedux) => {
   switch (action.type) {
     // Existing cases
     case "ENEMY_DAMAGE":
